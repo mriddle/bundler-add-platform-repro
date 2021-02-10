@@ -1,6 +1,6 @@
 ### Reproducing a bundler error
 
-_Unable to add the linux platform_
+_Unable to add [the linux platform](https://rubygems.org/gems/nokogiri/versions/1.11.1-x86_64-linux) `bundle lock --add-platform x86_64-linux` fails_
 
 **Setup**
 
@@ -98,3 +98,28 @@ _Unable to add the linux platform_
 
     Running `bundle update` will rebuild your snapshot from scratch, using only
     the gems in your Gemfile, which may resolve the conflict.
+
+**Manually resolving**
+
+Updating the Gemfile manually works 🤷‍♂️
+
+```diff
+diff --git i/Gemfile.lock w/Gemfile.lock
+index 8cd6f54..e09ae41 100644
+--- i/Gemfile.lock
++++ w/Gemfile.lock
+@@ -3,10 +3,13 @@ GEM
+   specs:
+     nokogiri (1.11.1-x86_64-darwin)
+       racc (~> 1.4)
++    nokogiri (1.11.1-x86_64-linux)
++      racc (~> 1.4)
+     racc (1.5.2)
+
+ PLATFORMS
+   x86_64-darwin-19
++  x86_64-linux
+
+ DEPENDENCIES
+   nokogiri (= 1.11.1)
+```
